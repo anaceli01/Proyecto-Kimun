@@ -21,7 +21,7 @@ def main():
             current_state = LevelSelector(WIDTH, HEIGHT, change_state)
 
     
-    # Inicializamos el primer estado
+    # INICIALIZA EL PRIMER ESTADO
     change_state("menu")
 
 

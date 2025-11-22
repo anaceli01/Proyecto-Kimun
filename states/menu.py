@@ -12,15 +12,13 @@ class Menu:
         base_path = os.path.dirname(os.path.dirname(__file__))  # sube desde /states/
         bg_path = os.path.join(base_path, "assets", "images", "background.png")
         self.background = pg.image.load(bg_path).convert()
-
-        #AJUSTA LA IMAGEN AL TAMAÑO DE LA VENTANA
-        self.background = pg.transform.scale(self.background, (width, height))
+        self.background = pg.transform.scale(self.background, (width, height)) #AJUSTA LA IMAGEN AL TAMAÑO DE LA VENTANA
 
         #CARGAR LA TIPOGRAFÍA PIXEL
         font_path = os.path.join(base_path, "assets", "fonts", "FontPixel.ttf")
 
         #TIPOGRAFÍA DEL TÍTULO Y DEL BOTÓN
-        self.font_title = pg.font.Font(font_path, 40)
+        self.font_title = pg.font.Font(font_path, 30)
         self.font_button = pg.font.Font(font_path, 20)
         
         #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN

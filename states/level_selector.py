@@ -10,45 +10,109 @@ class LevelSelector:
 
         #CARGAR FONDO
         base_path = os.path.dirname(os.path.dirname(__file__))  # sube desde /states/
-        bg_path = os.path.join(base_path, "assets", "images", "background.png")
+        bg_path = os.path.join(base_path, "assets", "images", "background2.png")
         self.background = pg.image.load(bg_path).convert()
-
-        #AJUSTA LA IMAGEN AL TAMAÑO DE LA VENTANA
-        self.background = pg.transform.scale(self.background, (width, height))
+        self.background = pg.transform.scale(self.background, (width, height)) #AJUSTA LA IMAGEN AL TAMAÑO DE LA VENTANA
 
         #CARGAR LA TIPOGRAFÍA PIXEL
         font_path = os.path.join(base_path, "assets", "fonts", "FontPixel.ttf")
 
-        #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN PARA RETROCEDER
-        self.button_position = ()
-        self.button_back = pg.Polygon()
-
         #TIPOGRAFÍA DEL TÍTULO Y DE LOS BOTONES DE LOS NIVELES
-        self.font_title = pg.font.Font(font_path, 40)
-        self.font_button = pg.font.Font(font_path, 20)
+        self.font_title = pg.font.Font(font_path, 30) #TÍTULO
+        self.font_button = pg.font.Font(font_path, 15) #NIVELES
 
-        #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN
-        self.button_level = pg.Rect(0, 0, 200, 60)
-        self.button_level.center = (width // 2, height // 2 + 40)
+        
+        '''-----BOTÓN PARA RETROCEDER-----'''
+
+        #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN PARA RETROCEDER
+        self.button_back = [(120, 130),(105, 140),(120, 150),(120, 145),(140, 145),(140, 135),(120, 135)]
+        self.button_back_rect = pg.Rect(105, 125, 40, 30)
+
+        #DEFINIR COLORES DEL BOTÓN PARA RETROCEDER
+        self.button_back_color = (2, 147, 22) #ESTADO NORMAL
+        self.button_back_color_hover = (1, 112, 16) #CUANDO SE PASA EL PUNTERO
 
 
+        '''-----BOTÓN DE LOS NIVELES-----'''
+
+        #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN PRINCIPIANTE
+        self.button_beginner = pg.Rect(160, 250, 190, 65)  # (x, y, ancho, alto)
+
+        #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN INTERMEDIO
+        self.button_intermediate = pg.Rect(370, 250, 190, 65) # (x, y, ancho, alto)
+
+        #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN AVANZADO
+        self.button_advanced = pg.Rect(580, 250, 180, 65) # (x, y, ancho, alto)
+
+        #DEFINIR COLORES DEL BOTÓN
+        self.button_level_color = (125, 79, 2)
+        self.button_lever_color_hover = (97, 61, 1)
+
+
+    #FUNCIÓN PARA VOLVER AL MENÚ AL PRESIONAR EL BOTÓN DE RETROCEDER
     def handle_event(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
-            if self.button_level.collidepoint(event.pos):
-                print('Botones para el nivel')
+            #FUNCIÓN PARA RETROCEDER
+            if self.button_back_rect.collidepoint(event.pos):
+                self.change_state("menu")
 
+            #FUNCIÓN PARA IR AL NIVEL PRINCIPIANTE
+            if self.button_beginner.collidepoint(event.pos):
+                print('Botón para el nivel principiante')
+
+            #FUNCIÓN PARA IR AL NIVEL INTERMEDIO
+            if self.button_intermediate.collidepoint(event.pos):
+                print('Botón para el nivel intermedio')
+
+            #FUNCIÓN PARA IR AL NIVEL AVANZADO
+            if self.button_advanced.collidepoint(event.pos):
+                print('Botón para el nivel avanzado')
 
     def update(self):
             pass
 
     def draw(self, screen):
-            #Dibujar el fondo 
-            screen.blit(self.background, (0, 0))
+        #DIBUJA EL FONDO 
+        screen.blit(self.background, (0, 0))
 
-            #TÍTULO
-            title_surface = self.font_title.render("NIVEL", True, (0, 0, 0))
-            title_rect = title_surface.get_rect(center=(self.width // 2, self.height // 2 - 40))
-            screen.blit(title_surface, title_rect)
+        #TÍTULO
+        title_surface = self.font_title.render("NIVEL", True, (0, 0, 0))
+        title_rect = title_surface.get_rect(center=(self.width // 2, self.height // 2 - 40))
+        screen.blit(title_surface, title_rect)
+
+        #BOTÓN DE RETROCEDER
+        mouse_pos = pg.mouse.get_pos()
+        color_back = self.button_back_color_hover if self.button_back_rect.collidepoint(mouse_pos) else self.button_back_color
+        pg.draw.polygon(screen, color_back, self.button_back)
+
+        mouse_pos = pg.mouse.get_pos()
+ 
+        #BOTÓN PARA SELECCIONAR NIVEL PRINCIPIANTE
+        level_color_beginner = self.button_lever_color_hover if self.button_beginner.collidepoint(mouse_pos) else self.button_level_color
+        pg.draw.ellipse(screen, level_color_beginner, self.button_beginner)
+
+        #TEXTO DEL BOTÓN NIVEL PRINCIPIANTE
+        button_text_beginner = self.font_button.render("PRINCIPIANTE", True, (255, 255, 255))
+        button_text_beginner_rect = button_text_beginner.get_rect(center=self.button_beginner.center)
+        screen.blit(button_text_beginner, button_text_beginner_rect)
+
+        #BOTÓN PARA SELECCIONAR NIVEL INTERMEDIO
+        level_color_intermediate = self.button_lever_color_hover if self.button_intermediate.collidepoint(mouse_pos) else self.button_level_color
+        pg.draw.ellipse(screen, level_color_intermediate, self.button_intermediate)
+
+        #TEXTO DEL BOTÓN NIVEL PRINCIPIANTE
+        button_text_intermediate = self.font_button.render("INTERMEDIO", True, (255, 255, 255))
+        button_text_intermediate_rect = button_text_intermediate.get_rect(center=self.button_intermediate.center)
+        screen.blit(button_text_intermediate, button_text_intermediate_rect)
+
+        #BOTÓN PARA SELECCIONAR NIVEL AVANZADO
+        level_color_advanced = self.button_lever_color_hover if self.button_advanced.collidepoint(mouse_pos) else self.button_level_color
+        pg.draw.ellipse(screen, level_color_advanced, self.button_advanced)
+
+        #TEXTO DEL BOTÓN NIVEL PRINCIPIANTE
+        button_text_advanced = self.font_button.render("AVANZADO", True, (255, 255, 255))
+        button_text_advanced_rect = button_text_advanced.get_rect(center=self.button_advanced.center)
+        screen.blit(button_text_advanced, button_text_advanced_rect)
 
 
         
