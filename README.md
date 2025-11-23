@@ -1,4 +1,4 @@
-Este proyecto llamado 'Willichedunguay' consiste en un videojuego 2D, de tipo quiz, que tiene como propósito enseñar el idioma williche, una variante del mapudungun. El juego contará con 3 niveles: 'Principiante', 'Intermedio y 'Avanzado', y cada nivel contarpá con igualmente 3 subniveles. Actualmente se encuentra en desarrollo.
+Este proyecto llamado 'Willichedunguay' consiste en un videojuego 2D, de tipo quiz, que tiene como propósito enseñar el idioma williche, una variante del mapudungun. El juego contará con 3 niveles: 'Principiante', 'Intermedio y 'Avanzado', y cada nivel contará con igualmente 3 subniveles. Actualmente se encuentra en desarrollo.
 
 Archivos y carpetas en el repositorio:
 -main.py : Inicializa el juego.
