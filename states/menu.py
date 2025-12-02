@@ -44,7 +44,7 @@ class Menu:
         screen.blit(self.background, (0, 0))
 
         #TÍTULO
-        title_surface = self.font_title.render("WILLICHEDUNGUAY", True, (0, 0, 0))
+        title_surface = self.font_title.render("KIMÜN", True, (0, 0, 0))
         title_rect = title_surface.get_rect(center=(self.width // 2, self.height // 2 - 40))
         screen.blit(title_surface, title_rect) #screen.blit() es un método para una superficie encima de otra
 

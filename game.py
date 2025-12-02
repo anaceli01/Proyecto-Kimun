@@ -2,11 +2,12 @@ import pygame as pg
 from settings import WIDTH, HEIGHT
 from states.menu import Menu
 from states.level_selector import LevelSelector
+from states.beginner_selector import BeginnerSelector
 
 class Game():
     def __init__(self):
         pg.init()
-        pg.display.set_caption("Willichedunguay")
+        pg.display.set_caption("Kimün")
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
 
@@ -18,10 +19,12 @@ class Game():
             self.current_state = Menu(WIDTH, HEIGHT, self.change_state)
         elif to == "level_selector":
             self.current_state = LevelSelector(WIDTH, HEIGHT, self.change_state)
+        elif to == 'beginner_selector':
+            self.current_state = BeginnerSelector(WIDTH, HEIGHT, self.change_state)
 
 
     def run(self):
-        # INICIALIZA EL PRIMER ESTADO
+        # INICIALIZA EL PRIMER ESTADO EN MENÚ
         self.change_state("menu")
         running = True
         while running:
