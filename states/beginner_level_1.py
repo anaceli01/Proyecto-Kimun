@@ -17,7 +17,7 @@ class BeginnerLevel1:
         # 1. CARGA DE ASSETS Y TIPOGRAFÍA
         base_path = os.path.dirname(os.path.dirname(__file__))
         #CARGAR FONDO
-        bg_path = os.path.join(base_path, "assets", "images", "background_beginner.png")
+        bg_path = os.path.join(base_path, "assets", "images", "background_beginner_levels.png")
         self.background = pg.image.load(bg_path).convert()
         self.background = pg.transform.scale(self.background, (width, height)) #AJUSTA LA IMAGEN AL TAMAÑO DE LA VENTANA
         #CARGAR TIPOGRAFÍA
