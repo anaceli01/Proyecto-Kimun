@@ -42,7 +42,7 @@ class BeginnerLevel1:
         self.dragging = None # Almacena la opción que se está arrastrando
        
         # Área donde la opción debe ser soltada (será el centro del texto de la pregunta)
-        self.drop_target_rect = pg.Rect(0, 0, 180, 50)
+        self.drop_target_rect = pg.Rect(0, 0, 280, 50)
         self.drop_target_rect.center = (width // 2, 200)
 
         #DEFINIR LA FORMA Y POSICIÓN DEL BOTÓN PARA RETROCEDER
